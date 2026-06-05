@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>آزمون ریاضی و آمار ۱ - فصل ۳ و ۴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Vazir', 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 16px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            padding: 24px 20px;
+            transition: all 0.3s ease;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+        .bismillah {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        .teacher-info {
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        .teacher-info span {
+            display: inline-block;
+            margin: 0 4px;
+        }
+        /* student form */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 6px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #cbd5e0;
+            border-radius: 16px;
+            font-size: 16px;
+            transition: 0.2s;
+            background: white;
+        }
+        input:focus {
+            border-color: #3182ce;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.3);
+        }
+        .btn {
+            background: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            box-shadow: 0 5px 15px rgba(49,130,206,0.4);
+        }
+        .btn:hover { background: #2b6cb0; }
+        .btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .question-page {
+            display: none;
+        }
+        .question-page.active {
+            display: block;
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 16px;
+            min-height: 44px;
+        }
+        .option-item:hover { border-color: #3182ce; background: #ebf8ff; }
+        .option-item input { display: none; }
+        .option-item.selected {
+            border-color: #3182ce;
+            background: #ebf8ff;
+            font-weight: 600;
+        }
+        .true-false-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .true-false-btn {
+            flex: 1;
+            min-width: 100px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.2s;
+            min-height: 44px;
+        }
+        .true-false-btn.selected {
+            border-color: #3182ce;
+            background: #ebf8ff;
+        }
+        .timer-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .timer-fill {
+            height: 100%;
+            background: #e53e3e;
+            width: 100%;
+            transition: width 1s linear;
+        }
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+        .progress-text {
+            font-weight: 600;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .result-box {
+            text-align: center;
+            padding: 20px;
+        }
+        .code-display {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2b6cb0;
+            background: #ebf8ff;
+            padding: 16px;
+            border-radius: 20px;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+        .lock-message {
+            font-size: 15px;
+            color: #718096;
+            margin-top: 20px;
+        }
+        .review-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .review-table th, .review-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .review-table th {
+            background: #edf2f7;
+        }
+        .correct-answer {
+            color: #38a169;
+            font-weight: bold;
+        }
+        .wrong-answer {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 16px 12px;
+                border-radius: 24px;
+            }
+            .question-text {
+                font-size: 16px;
+            }
+            .option-item {
+                padding: 12px;
+                font-size: 15px;
+                border-radius: 16px;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 15px;
+                border-radius: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <!-- Header -->
+        <div class="header">
+            <div class="bismillah">بسم الله الرحمن الرحیم</div>
+            <div class="teacher-info">
+                <span>دبیر: میثم یعقوبیان</span> | 
+                <span>مدرسه غدیر</span> | 
+                <span>پایه دهم انسانی</span>
+            </div>
+        </div>
+
+        <!-- Start page -->
+        <div id="startPage">
+            <h2 style="text-align:center; margin-bottom:20px;">آزمون ریاضی و آمار ۱ (فصل ۳ و ۴)</h2>
+            <div class="form-group">
+                <label>نام و نام خانوادگی:</label>
+                <input type="text" id="studentName" placeholder="نام کامل خود را وارد کنید">
+            </div>
+            <div class="form-group">
+                <label>شماره کلاس:</label>
+                <input type="text" id="classNumber" placeholder="مثال: ۱">
+            </div>
+            <div class="form-group">
+                <label>کد دانش‌آموزی:</label>
+                <input type="text" id="studentId" placeholder="کد دانش‌آموزی">
+            </div>
+            <button class="btn" id="startBtn" style="width:100%;">شروع آزمون</button>
+            <div id="alreadyTakenMsg" class="hidden" style="text-align:center; color:#e53e3e; margin-top:16px;">
+                شما قبلاً در این آزمون شرکت کرده‌اید. برای مشاهده نتایج، پس از یک ساعت بازگردید.
+            </div>
+            <div id="reviewUnlockBtn" class="hidden" style="margin-top:16px; text-align:center;">
+                <button class="btn" id="viewReviewBtn">مشاهده پاسخ‌ها</button>
+                <p id="reviewTimer" style="font-size:14px; color:#4a5568;"></p>
+            </div>
+        </div>
+
+        <!-- Quiz page -->
+        <div id="quizPage" class="hidden">
+            <div class="progress-container">
+                <span class="progress-text" id="progressText">سوال 1 از 15</span>
+                <span id="timerDisplay" style="font-weight:bold; color:#e53e3e;">60</span>
+            </div>
+            <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
+            <div id="questionContainer"></div>
+            <div class="navigation-buttons">
+                <button class="btn" id="nextBtn">بعدی</button>
+            </div>
+        </div>
+
+        <!-- Result page -->
+        <div id="resultPage" class="hidden">
+            <div class="result-box">
+                <h3>آزمون پایان یافت</h3>
+                <p style="margin:16px 0;">اطلاعات شما ثبت شد.</p>
+                <div class="code-display" id="finalCode"></div>
+                <p style="color:#4a5568;">کد نهایی شما (برای گزارش)</p>
+                <div id="studentInfoResult" style="margin:20px 0; font-size:16px; color:#2d3748;"></div>
+                <p class="lock-message">نتایج آزمون شما یک ساعت پس از پایان قابل مشاهده خواهد بود.</p>
+                <div id="resultReviewTimer" style="font-size:14px; margin-top:12px;"></div>
+                <button class="btn hidden" id="resultReviewBtn" style="margin-top:12px;">مشاهده پاسخ‌ها و عملکرد</button>
+            </div>
+        </div>
+
+        <!-- Review page (hidden until unlock) -->
+        <div id="reviewPage" class="hidden">
+            <h3 style="text-align:center; margin-bottom:20px;">پاسخ‌های صحیح و عملکرد شما</h3>
+            <div id="reviewContent"></div>
+            <button class="btn" id="backToResultBtn" style="margin-top:20px;">بازگشت</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ====== SORALAT ======
+            const questions = [
+                { type: 'mc', difficulty: 'easy', question: 'کدام گزینه تعریف درست «جامعه آماری» است؟', options: ['زیرمجموعه‌ای از واحدهای آماری', 'مجموعهٔ کل واحدهای آماری مورد بررسی', 'داده‌های گردآوری‌شده از یک نمونه', 'جدول فراوانی داده‌ها'], correct: 1, time: 60 },
+                { type: 'mc', difficulty: 'easy', question: 'کدام یک متغیر کیفی است؟', options: ['قد', 'وزن', 'گروه خونی', 'نمرهٔ ریاضی'], correct: 2, time: 60 },
+                { type: 'tf', difficulty: 'easy', question: '«میانگین» یکی از معیارهای پراکندگی است.', correct: false, time: 60 },
+                { type: 'mc', difficulty: 'medium', question: 'میانهٔ داده‌های ۲, ۴, ۶, ۸, ۱۰ کدام است؟', options: ['۴', '۵', '۶', '۸'], correct: 2, time: 90 },
+                { type: 'mc', difficulty: 'easy', question: 'عدد بسیار بزرگ‌تر یا کوچک‌تر از بقیهٔ داده‌ها چه نام دارد؟', options: ['میانه', 'مد', 'چارک', 'دادهٔ دورافتاده'], correct: 3, time: 60 },
+                { type: 'mc', difficulty: 'medium', question: 'در نمودار جعبه‌ای، کدام جمله درست است؟', options: ['میانه در مرکز جعبه قرار دارد', 'جعبه دامنهٔ تغییرات را نشان می‌دهد', 'سبیل‌ها چارک‌ها را نشان می‌دهند', 'طول جعبه برابر انحراف معیار است'], correct: 0, time: 90 },
+                { type: 'tf', difficulty: 'medium', question: 'اگر انحراف معیار مجموعه‌داده‌ای صفر باشد، همهٔ داده‌ها برابرند.', correct: true, time: 90 },
+                { type: 'mc', difficulty: 'easy', question: 'کدام یک از معیارهای پراکندگی است؟', options: ['میانگین', 'میانه', 'مد', 'دامنهٔ تغییرات'], correct: 3, time: 60 },
+                { type: 'mc', difficulty: 'medium', question: 'در یک نمودار دایره‌ای، مجموع زوایای بخش‌ها چند درجه است؟', options: ['۱۸۰', '۲۷۰', '۳۶۰', '۹۰'], correct: 2, time: 90 },
+                { type: 'mc', difficulty: 'easy', question: 'نمودار دایره‌ای برای چه وضعیتی مناسب است؟', options: ['داده‌های پراکنده', 'نسبت‌ها وقتی تعداد گروه‌ها کم باشد', 'داده‌های دورافتاده', 'فقط داده‌های کمی'], correct: 1, time: 60 },
+                { type: 'mc', difficulty: 'medium', question: 'نمودار حبابی چند متغیر عددی را هم‌زمان نشان می‌دهد؟', options: ['یک', 'دو', 'سه', 'چهار'], correct: 2, time: 90 },
+                { type: 'tf', difficulty: 'easy', question: 'نمودار راداری برای مقایسهٔ چند متغیر کمّی به‌کار می‌رود.', correct: true, time: 60 },
+                { type: 'mc', difficulty: 'medium', question: 'دامنهٔ میان‌چارکی چه محدوده‌ای را نشان می‌دهد؟', options: ['کمترین تا بیشترین', 'چارک اول تا چارک سوم', 'میانه تا چارک سوم', 'میانگین تا میانه'], correct: 1, time: 90 },
+                { type: 'tf', difficulty: 'medium', question: 'در نمودار حبابی، شعاع دایره‌ها باید با مقدار متغیر سوم متناسب باشد.', correct: false, time: 90 },
+                { type: 'mc', difficulty: 'medium', question: 'کدام روش گردآوری داده شامل «سؤالات از پیش تعیین‌شده برای تکمیل توسط پاسخگو» است؟', options: ['مشاهده', 'مصاحبه', 'پرسش‌نامه', 'دادگان'], correct: 2, time: 90 }
+            ];
+
+            // ====== DOM ======
+            const startPage = document.getElementById('startPage');
+            const quizPage = document.getElementById('quizPage');
+            const resultPage = document.getElementById('resultPage');
+            const reviewPage = document.getElementById('reviewPage');
+            const startBtn = document.getElementById('startBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const studentNameInp = document.getElementById('studentName');
+            const classNumberInp = document.getElementById('classNumber');
+            const studentIdInp = document.getElementById('studentId');
+            const alreadyMsg = document.getElementById('alreadyTakenMsg');
+            const reviewUnlockDiv = document.getElementById('reviewUnlockBtn');
+            const viewReviewBtn = document.getElementById('viewReviewBtn');
+            const reviewTimerDisplay = document.getElementById('reviewTimer');
+            const questionContainer = document.getElementById('questionContainer');
+            const progressText = document.getElementById('progressText');
+            const timerDisplay = document.getElementById('timerDisplay');
+            const timerFill = document.getElementById('timerFill');
+            const finalCodeDiv = document.getElementById('finalCode');
+            const studentInfoResult = document.getElementById('studentInfoResult');
+            const resultReviewTimer = document.getElementById('resultReviewTimer');
+            const resultReviewBtn = document.getElementById('resultReviewBtn');
+            const reviewContent = document.getElementById('reviewContent');
+            const backToResultBtn = document.getElementById('backToResultBtn');
+
+            // ====== State ======
+            let currentQuestionIndex = 0;
+            let userAnswers = new Array(questions.length).fill(null); // null: unanswered, else index for mc, boolean for tf
+            let timerInterval = null;
+            let timeLeft = 0;
+            let testStartTime = null;
+            let testEndTime = null;
+            let finalScore = 0;
+            let finalCodeValue = 0;
+
+            // ====== Storage Keys ======
+            const STORAGE_KEY = 'mathStatisticsExam10';
+            const STUDENT_INFO_KEY = 'studentInfo10';
+
+            // ====== Check if already taken ======
+            function checkAlreadyTaken() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    if (data && data.taken) {
+                        showAlreadyTaken(data);
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function showAlreadyTaken(data) {
+                startPage.querySelector('h2').style.display = 'none';
+                document.querySelectorAll('.form-group').forEach(g => g.style.display = 'none');
+                startBtn.style.display = 'none';
+                alreadyMsg.classList.remove('hidden');
+                if (data && data.finishTime) {
+                    const now = Date.now();
+                    const diff = now - data.finishTime;
+                    const oneHour = 60 * 60 * 1000;
+                    if (diff >= oneHour) {
+                        reviewUnlockDiv.classList.remove('hidden');
+                        viewReviewBtn.classList.remove('hidden');
+                        reviewTimerDisplay.textContent = 'اکنون می‌توانید پاسخ‌ها را ببینید.';
+                        viewReviewBtn.addEventListener('click', showReview);
+                    } else {
+                        reviewUnlockDiv.classList.remove('hidden');
+                        viewReviewBtn.classList.add('hidden');
+                        const remaining = oneHour - diff;
+                        updateReviewTimer(remaining, reviewTimerDisplay, () => {
+                            viewReviewBtn.classList.remove('hidden');
+                            reviewTimerDisplay.textContent = 'اکنون می‌توانید پاسخ‌ها را ببینید.';
+                        });
+                    }
+                }
+            }
+
+            function updateReviewTimer(remaining, element, onComplete) {
+                const interval = setInterval(() => {
+                    const now = Date.now();
+                    const diff = remaining - (now - (testEndTime || Date.now()));
+                    if (diff <= 0) {
+                        clearInterval(interval);
+                        element.textContent = 'زمان تمام شده است.';
+                        onComplete();
+                    } else {
+                        const mins = Math.floor(diff / 60000);
+                        const secs = Math.floor((diff % 60000) / 1000);
+                        element.textContent = `باقی‌مانده تا باز شدن نتایج: ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                    }
+                }, 1000);
+            }
+
+            // ====== Start Exam ======
+            startBtn.addEventListener('click', () => {
+                if (checkAlreadyTaken()) return;
+                const name = studentNameInp.value.trim();
+                const classNum = classNumberInp.value.trim();
+                const studentId = studentIdInp.value.trim();
+                if (!name || !classNum || !studentId) {
+                    alert('لطفاً تمام اطلاعات را وارد کنید.');
+                    return;
+                }
+                const studentInfo = { name, classNum, studentId };
+                localStorage.setItem(STUDENT_INFO_KEY, JSON.stringify(studentInfo));
+                testStartTime = Date.now();
+                startPage.classList.add('hidden');
+                quizPage.classList.remove('hidden');
+                currentQuestionIndex = 0;
+                showQuestion(currentQuestionIndex);
+            });
+
+            function showQuestion(index) {
+                if (timerInterval) clearInterval(timerInterval);
+                const q = questions[index];
+                timeLeft = q.time;
+                updateTimerDisplay();
+                progressText.textContent = `سوال ${index + 1} از ${questions.length}`;
+                timerFill.style.width = '100%';
+                timerFill.style.background = '#e53e3e';
+
+                let html = `<div class="question-text">${q.question}</div>`;
+                if (q.type === 'mc') {
+                    html += '<div class="options">';
+                    q.options.forEach((opt, i) => {
+                        html += `
+                            <div class="option-item" data-index="${i}">
+                                <span>${opt}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                } else { // true/false
+                    html += `
+                        <div class="true-false-group">
+                            <div class="true-false-btn" data-value="true">صحیح</div>
+                            <div class="true-false-btn" data-value="false">غلط</div>
+                        </div>
+                    `;
+                }
+                questionContainer.innerHTML = html;
+
+                // Restore answer if any
+                if (userAnswers[index] !== null) {
+                    if (q.type === 'mc') {
+                        const items = questionContainer.querySelectorAll('.option-item');
+                        items[userAnswers[index]].classList.add('selected');
+                    } else {
+                        const btns = questionContainer.querySelectorAll('.true-false-btn');
+                        const val = userAnswers[index] ? 'true' : 'false';
+                        btns.forEach(b => {
+                            if (b.dataset.value === val) b.classList.add('selected');
+                        });
+                    }
+                }
+
+                // Add event listeners
+                if (q.type === 'mc') {
+                    const items = questionContainer.querySelectorAll('.option-item');
+                    items.forEach(item => {
+                        item.addEventListener('click', () => {
+                            items.forEach(i => i.classList.remove('selected'));
+                            item.classList.add('selected');
+                            userAnswers[index] = parseInt(item.dataset.index);
+                        });
+                    });
+                } else {
+                    const btns = questionContainer.querySelectorAll('.true-false-btn');
+                    btns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            btns.forEach(b => b.classList.remove('selected'));
+                            btn.classList.add('selected');
+                            userAnswers[index] = btn.dataset.value === 'true';
+                        });
+                    });
+                }
+
+                nextBtn.disabled = false;
+                nextBtn.textContent = index === questions.length - 1 ? 'پایان آزمون' : 'بعدی';
+                startTimer();
+            }
+
+            function startTimer() {
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        nextQuestion();
+                    }
+                }, 1000);
+            }
+
+            function updateTimerDisplay() {
+                timerDisplay.textContent = `${timeLeft} ثانیه`;
+                const q = questions[currentQuestionIndex];
+                const percent = (timeLeft / q.time) * 100;
+                timerFill.style.width = percent + '%';
+                if (percent < 30) timerFill.style.background = '#e53e3e';
+                else timerFill.style.background = '#dd6b20';
+            }
+
+            function nextQuestion() {
+                clearInterval(timerInterval);
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    showQuestion(currentQuestionIndex);
+                } else {
+                    finishExam();
+                }
+            }
+
+            nextBtn.addEventListener('click', () => {
+                nextQuestion();
+            });
+
+            function finishExam() {
+                quizPage.classList.add('hidden');
+                testEndTime = Date.now();
+                // Calculate score
+                let correctCount = 0;
+                for (let i = 0; i < questions.length; i++) {
+                    const ans = userAnswers[i];
+                    if (ans === null) continue;
+                    const q = questions[i];
+                    if (q.type === 'mc') {
+                        if (ans === q.correct) correctCount++;
+                    } else { // tf
+                        if (ans === q.correct) correctCount++;
+                    }
+                }
+                finalScore = Math.round((correctCount / questions.length) * 12);
+                finalCodeValue = (finalScore + 1) * 27;
+
+                // Save to localStorage
+                const studentInfo = JSON.parse(localStorage.getItem(STUDENT_INFO_KEY));
+                const examData = {
+                    taken: true,
+                    startTime: testStartTime,
+                    finishTime: testEndTime,
+                    answers: userAnswers,
+                    finalScore,
+                    finalCode: finalCodeValue
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(examData));
+
+                // Show result page
+                resultPage.classList.remove('hidden');
+                finalCodeDiv.textContent = finalCodeValue;
+                studentInfoResult.innerHTML = `نام: ${studentInfo.name} | کلاس: ${studentInfo.classNum} | کد دانش‌آموزی: ${studentInfo.studentId}`;
+
+                // Timer for review unlock
+                const oneHour = 60 * 60 * 1000;
+                const remaining = oneHour;
+                updateReviewTimer(remaining, resultReviewTimer, () => {
+                    resultReviewBtn.classList.remove('hidden');
+                    resultReviewTimer.textContent = 'اکنون می‌توانید پاسخ‌ها را ببینید.';
+                });
+            }
+
+            // ====== Review ======
+            function showReview() {
+                const examData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (!examData) return;
+                const studentInfo = JSON.parse(localStorage.getItem(STUDENT_INFO_KEY));
+                resultPage.classList.add('hidden');
+                reviewPage.classList.remove('hidden');
+                let tableHtml = '<table class="review-table"><thead><tr><th>شماره</th><th>پاسخ شما</th><th>پاسخ صحیح</th><th>نتیجه</th></tr></thead><tbody>';
+                for (let i = 0; i < questions.length; i++) {
+                    const q = questions[i];
+                    const userAns = examData.answers[i];
+                    let userAnsText = 'بی‌پاسخ';
+                    let correctAnsText = '';
+                    if (q.type === 'mc') {
+                        correctAnsText = q.options[q.correct];
+                        if (userAns !== null && userAns !== undefined) {
+                            userAnsText = q.options[userAns];
+                        }
+                    } else {
+                        correctAnsText = q.correct ? 'صحیح' : 'غلط';
+                        if (userAns !== null && userAns !== undefined) {
+                            userAnsText = userAns ? 'صحیح' : 'غلط';
+                        }
+                    }
+                    const isCorrect = (userAns !== null && userAns === q.correct) || 
+                                      (q.type === 'tf' && userAns === q.correct);
+                    const statusClass = isCorrect ? 'correct-answer' : (userAns === null ? '' : 'wrong-answer');
+                    const statusText = isCorrect ? '✔' : (userAns === null ? '-' : '✘');
+                    tableHtml += `<tr>
+                        <td>${i+1}</td>
+                        <td>${userAnsText}</td>
+                        <td>${correctAnsText}</td>
+                        <td class="${statusClass}">${statusText}</td>
+                    </tr>`;
+                }
+                tableHtml += '</tbody></table>';
+                tableHtml += `<p style="margin-top:16px;">نمره نهایی (از ۱۲): ${examData.finalScore} | کد نهایی: ${examData.finalCode}</p>`;
+                reviewContent.innerHTML = tableHtml;
+            }
+
+            viewReviewBtn.addEventListener('click', showReview);
+            resultReviewBtn.addEventListener('click', showReview);
+            backToResultBtn.addEventListener('click', () => {
+                reviewPage.classList.add('hidden');
+                resultPage.classList.remove('hidden');
+            });
+
+            // Initial check
+            if (checkAlreadyTaken()) {
+                // already handled
+            }
+        })();
+    </script>
+</body>
+</html>

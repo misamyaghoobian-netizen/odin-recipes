@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>آزمون ریاضی دهم - فصول ۵، ۶، ۷</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:tahoma, sans-serif;
+  background:#f4f6f9;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+header{
+  background:#2c3e50;
+  color:#fff;
+  padding:15px;
+  text-align:center;
+}
+header h1{font-size:18px}
+header p{font-size:14px}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:15px;
+}
+
+.card{
+  background:#fff;
+  margin-bottom:15px;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.question{
+  margin-bottom:10px;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.option{
+  flex:1 1 100%;
+  background:#ecf0f1;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+}
+
+.option input{margin-left:8px}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#27ae60;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:15px;
+  cursor:pointer;
+  min-height:44px;
+}
+
+.progress{
+  width:100%;
+  height:10px;
+  background:#ddd;
+  border-radius:5px;
+  margin-bottom:15px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#3498db;
+  border-radius:5px;
+}
+
+.timer{
+  text-align:center;
+  margin:10px 0;
+  font-size:16px;
+  color:#e74c3c;
+}
+
+.result{
+  display:none;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  body{font-size:14px}
+}
+@media(max-width:480px){
+  header h1{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <p>بسم الله الرحمن الرحیم</p>
+  <h1>آزمون ریاضی دهم (فصل ۵، ۶، ۷)</h1>
+  <p>دبیر: میثم یعقوبیان | مدرسه: غدیر | پایه: دهم | رشته: تجربی</p>
+</header>
+
+<div class="container">
+
+<div class="progress"><div class="progress-bar" id="progress"></div></div>
+<div class="timer">زمان باقی‌مانده: <span id="time">600</span> ثانیه</div>
+
+<form id="quizForm"></form>
+
+<button onclick="submitQuiz()">پایان آزمون</button>
+
+<div class="result card" id="result"></div>
+
+</div>
+
+<script>
+const questions = [
+{q:"دامنه تابع √(x-2) چیست؟",options:["x≥2","x>2","x≤2","همه اعداد"],answer:0,ex:"زیر رادیکال باید مثبت باشد"},
+{q:"برد تابع y=x² چیست؟",options:["R","y≥0","y≤0","y>0"],answer:1,ex:"مربع همیشه مثبت است"},
+{q:"اگر f(x)=2x+1، f(2)؟",options:["3","5","4","6"],answer:1,ex:"جایگذاری"},
+{q:"مقدار sin²x+cos²x؟",options:["0","1","2","x"],answer:1,ex:"رابطه مثلثاتی"},
+{q:"در مثلث قائم، اگر وتر 5 و ضلع 3 باشد ضلع دیگر؟",options:["4","2","3","5"],answer:0,ex:"فیثاغورس"},
+{q:"تابع خطی است؟",options:["x²","2x+3","√x","sinx"],answer:1,ex:"درجه 1"},
+{q:"دامنه تابع 1/(x-1)؟",options:["x≠1","x=1","همه","x>1"],answer:0,ex:"مخرج صفر نشود"},
+{q:"cos(0)؟",options:["0","1","-1","2"],answer:1,ex:"زاویه صفر"},
+{q:"اگر زاویه 90 درجه، sin؟",options:["1","0","-1","0.5"],answer:0,ex:"حداکثر"},
+{q:"شیب خط y=2x+3؟",options:["2","3","1","0"],answer:0,ex:"ضریب x"}
+];
+
+const form = document.getElementById("quizForm");
+
+questions.forEach((item,i)=>{
+  let div=document.createElement("div");
+  div.className="card";
+  div.innerHTML=`<div class="question">${i+1}. ${item.q}</div>`;
+  
+  let opts=document.createElement("div");
+  opts.className="options";
+  
+  item.options.forEach((opt,j)=>{
+    opts.innerHTML+=`
+    <label class="option">
+      <input type="radio" name="q${i}" value="${j}">
+      ${opt}
+    </label>`;
+  });
+
+  div.appendChild(opts);
+  form.appendChild(div);
+});
+
+let time=600;
+let timer=setInterval(()=>{
+  time--;
+  document.getElementById("time").innerText=time;
+  if(time<=0){clearInterval(timer);submitQuiz();}
+},1000);
+
+function submitQuiz(){
+  clearInterval(timer);
+  let score=0;
+  let resultHTML="<h3>گزارش آزمون</h3>";
+
+  questions.forEach((q,i)=>{
+    let ans=document.querySelector(`input[name=q${i}]:checked`);
+    let user=ans?parseInt(ans.value):-1;
+
+    if(user===q.answer) score++;
+
+    resultHTML+=`<p>سوال ${i+1}: ${user===q.answer?"✅ درست":"❌ نادرست"}<br>توضیح: ${q.ex}</p>`;
+  });
+
+  let finalScore = (score/10)*12;
+
+  resultHTML+=`<h2>نمره شما: ${finalScore.toFixed(1)} از ۱۲</h2>`;
+  
+  document.getElementById("result").innerHTML=resultHTML;
+  document.getElementById("result").style.display="block";
+}
+
+window.addEventListener("scroll",()=>{
+  let totalHeight=document.body.scrollHeight-window.innerHeight;
+  let progress=(window.scrollY/totalHeight)*100;
+  document.getElementById("progress").style.width=progress+"%";
+});
+</script>
+
+</body>
+</html>
