@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=2.0">
+    <title>آزمون ریاضی دهم تجربی | فصل‌های ۵، ۶ و ۷</title>
+    <style>
+        :root {
+            --primary: #0d7c7c;
+            --primary-light: #0fa3a3;
+            --primary-dark: #065f5f;
+            --accent: #f0a500;
+            --accent-light: #ffc940;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-light: #555;
+            --text-muted: #777;
+            --border: #e0e5ec;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
+            --warning: #f59e0b;
+            --warning-bg: #fef3c7;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius-sm: 10px;
+            --radius: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-stack: 'Tahoma', 'Segoe UI', 'Vazir', 'IRANSans', 'Arial', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background: linear-gradient(160deg, #e8f5f5 0%, #f0f4f8 30%, #fdf6f0 60%, #f5f7fa 100%);
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 0;
+            direction: rtl;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -120px;
+            left: -120px;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(13, 124, 124, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(240, 165, 0, 0.07) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .main-container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 20px 20px 18px;
+            margin-bottom: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary-light));
+            border-radius: 0 0 8px 8px;
+        }
+        .bismillah {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            line-height: 2;
+        }
+        .bismillah .arabic {
+            font-family: 'Traditional Arabic', 'Scheherazade New', 'Tahoma', serif;
+            font-size: 1.7rem;
+            display: block;
+            color: #1a3c3c;
+        }
+        .teacher-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        .teacher-info .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #f0f7f7;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            color: var(--primary-dark);
+            font-weight: 500;
+            border: 1px solid #d5ecec;
+        }
+        .teacher-info .badge.highlight {
+            background: #fffbf0;
+            border-color: #fde8b0;
+            color: #8b6914;
+            font-weight: 600;
+        }
+        .teacher-info .dot-sep {
+            display: none;
+            color: #ccc;
+        }
+
+        /* Student Info Panel */
+        .student-info-panel {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        .student-info-panel h2 {
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .input-group {
+            margin-bottom: 16px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+            font-family: var(--font-stack);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fafbfc;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13,124,124,0.1);
+        }
+
+        .quiz-toolbar {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 10px;
+            z-index: 50;
+        }
+        .timer-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: #f0fafa;
+            padding: 8px 16px;
+            border-radius: 25px;
+            min-width: 100px;
+            justify-content: center;
+            border: 2px solid #c5e8e8;
+            transition: var(--transition);
+        }
+        .timer-box.warning {
+            color: #c0392b;
+            background: #fff5f5;
+            border-color: #fcc;
+            animation: pulse-warn 1s infinite;
+        }
+        .timer-box.danger {
+            color: #fff;
+            background: #e74c3c;
+            border-color: #c0392b;
+            animation: pulse-danger 0.6s infinite;
+        }
+        @keyframes pulse-warn {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.04);
+            }
+        }
+        @keyframes pulse-danger {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.06);
+            }
+        }
+        .timer-icon {
+            font-size: 1.3rem;
+        }
+        .progress-wrapper {
+            flex: 1;
+            min-width: 140px;
+            max-width: 320px;
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+        .progress-bar-bg {
+            background: #e8ecf0;
+            border-radius: 12px;
+            height: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            border-radius: 12px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        .questions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .question-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 18px 18px 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+        }
+        .question-card:hover {
+            box-shadow: var(--shadow);
+            border-color: #d0d8e0;
+        }
+        .question-card.answered {
+            border-right: 4px solid var(--primary-light);
+            background: #faffff;
+        }
+        .question-card.correct-flash {
+            border-color: var(--success) !important;
+            background: var(--success-bg) !important;
+            border-right: 4px solid var(--success) !important;
+        }
+        .question-card.incorrect-flash {
+            border-color: var(--error) !important;
+            background: var(--error-bg) !important;
+            border-right: 4px solid var(--error) !important;
+        }
+        .q-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .q-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .q-number.easy {
+            background: #10b981;
+        }
+        .q-number.medium {
+            background: var(--accent);
+            color: #5c3d00;
+        }
+        .q-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .q-meta .tag {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .tag.chapter {
+            background: #e8f0fe;
+            color: #3b5998;
+        }
+        .tag.points {
+            background: #fef3c7;
+            color: #8b6914;
+        }
+        .tag.type {
+            background: #f0e6f6;
+            color: #6b3fa0;
+        }
+        .q-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+        .options-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            background: #fafbfc;
+            min-height: 46px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .option-item:hover {
+            border-color: var(--primary-light);
+            background: #f5fafa;
+        }
+        .option-item input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            border: 2px solid #c0c8d0;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .option-item input[type="radio"]:checked {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+        .option-item input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .option-item:has(input:checked) {
+            border-color: var(--primary);
+            background: #f0fafa;
+            font-weight: 600;
+        }
+        .option-label {
+            font-size: 0.95rem;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .tf-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tf-btn {
+            flex: 1;
+            min-width: 90px;
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: #fafbfc;
+            min-height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tf-btn:hover {
+            border-color: var(--primary-light);
+            background: #f5fafa;
+        }
+        .tf-btn.selected-true {
+            border-color: #10b981 !important;
+            background: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+        .tf-btn.selected-false {
+            border-color: #ef4444 !important;
+            background: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+        .tf-btn input {
+            display: none;
+        }
+
+        .explanation {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            display: none;
+            font-weight: 500;
+        }
+        .explanation.show {
+            display: block;
+        }
+        .explanation.correct-exp {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        .explanation.incorrect-exp {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .submit-section {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            min-height: 48px;
+            min-width: 48px;
+            font-family: var(--font-stack);
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-submit {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(13, 124, 124, 0.35);
+            font-size: 1.05rem;
+            padding: 15px 36px;
+        }
+        .btn-submit:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(13, 124, 124, 0.45);
+            transform: translateY(-2px);
+        }
+        .btn-submit:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(13, 124, 124, 0.3);
+        }
+        .btn-outline {
+            background: #fff;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: #f0fafa;
+        }
+        .btn-reset {
+            background: #fff;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+        .btn-reset:hover {
+            background: #f5f5f5;
+            border-color: #bbb;
+        }
+
+        .results-panel,
+        .already-completed-panel {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+            border: 1px solid var(--border);
+        }
+        .results-panel.show,
+        .already-completed-panel.show {
+            display: block;
+            animation: fadeSlideIn 0.5s ease-out;
+        }
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .score-circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin: 8px auto 16px;
+            letter-spacing: 1px;
+        }
+        .score-circle.great {
+            background: #d1fae5;
+            color: #065f46;
+            border: 5px solid #10b981;
+        }
+        .score-circle.good {
+            background: #fef3c7;
+            color: #8b6914;
+            border: 5px solid #f59e0b;
+        }
+        .score-circle.needs-work {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 5px solid #ef4444;
+        }
+        .results-summary {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin: 8px 0 16px;
+            line-height: 1.8;
+        }
+        .results-summary strong {
+            color: var(--text);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            padding: 16px 0 24px;
+        }
+
+        @media screen and (max-width: 480px) {
+            html {
+                font-size: 15px;
+            }
+            body {
+                font-size: 14px;
+            }
+            .main-container {
+                padding: 8px;
+            }
+            .header {
+                padding: 14px 12px 12px;
+                border-radius: var(--radius);
+            }
+            .bismillah {
+                font-size: 1.2rem;
+            }
+            .bismillah .arabic {
+                font-size: 1.4rem;
+            }
+            .teacher-info {
+                font-size: 0.75rem;
+                gap: 4px 8px;
+            }
+            .teacher-info .badge {
+                padding: 5px 10px;
+                font-size: 0.72rem;
+            }
+            .quiz-toolbar {
+                padding: 10px 12px;
+                gap: 8px;
+                border-radius: var(--radius-sm);
+                top: 6px;
+            }
+            .timer-box {
+                font-size: 0.95rem;
+                padding: 7px 12px;
+                min-width: 85px;
+                min-height: 44px;
+            }
+            .progress-wrapper {
+                min-width: 100px;
+                max-width: 100%;
+                flex: 2;
+            }
+            .question-card {
+                padding: 14px 12px 12px;
+                border-radius: var(--radius-sm);
+            }
+            .q-number {
+                width: 30px;
+                height: 30px;
+                min-width: 30px;
+                font-size: 0.85rem;
+            }
+            .q-text {
+                font-size: 0.9rem;
+            }
+            .option-item {
+                padding: 10px 10px;
+                min-height: 44px;
+                gap: 8px;
+            }
+            .option-item input[type="radio"] {
+                width: 20px;
+                height: 20px;
+                min-width: 20px;
+            }
+            .option-label {
+                font-size: 0.85rem;
+            }
+            .tf-btn {
+                padding: 10px 14px;
+                min-height: 44px;
+                font-size: 0.85rem;
+                min-width: 70px;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                min-height: 44px;
+                border-radius: 25px;
+            }
+            .btn-submit {
+                padding: 13px 24px;
+                font-size: 0.95rem;
+                width: 100%;
+            }
+            .submit-section {
+                gap: 8px;
+            }
+            .score-circle {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+            .q-meta {
+                font-size: 0.7rem;
+            }
+            .q-meta .tag {
+                font-size: 0.68rem;
+                padding: 2px 8px;
+            }
+            .explanation {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 768px) and (min-width: 481px) {
+            html {
+                font-size: 15.5px;
+            }
+            .main-container {
+                padding: 12px;
+            }
+            .option-item {
+                min-height: 46px;
+            }
+            .btn {
+                min-height: 46px;
+            }
+            .tf-btn {
+                min-height: 46px;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            .teacher-info .dot-sep {
+                display: inline;
+                margin: 0 4px;
+            }
+            .option-item {
+                min-height: 48px;
+            }
+        }
+
+        @media (pointer: coarse) {
+            .option-item,
+            .tf-btn,
+            .btn,
+            .option-item input[type="radio"] {
+                min-height: 44px;
+            }
+            .option-item input[type="radio"] {
+                min-width: 22px;
+                min-height: 22px;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                font-size: 12pt;
+            }
+            .quiz-toolbar,
+            .submit-section,
+            .btn-reset {
+                display: none;
+            }
+            .question-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- هدر ثابت -->
+        <header class="header">
+            <div class="bismillah">
+                <span class="arabic">﷽</span>
+                بسم الله الرحمن الرحیم
+            </div>
+            <div class="teacher-info">
+                <span class="badge">👨‍🏫 دبیر: میثم یعقوبیان</span>
+                <span class="dot-sep">•</span>
+                <span class="badge">🏫 مدرسه غدیر</span>
+                <span class="dot-sep">•</span>
+                <span class="badge">📚 پایه دهم تجربی</span>
+                <span class="dot-sep">•</span>
+                <span class="badge highlight">📖 فصل‌های ۵، ۶ و ۷</span>
+            </div>
+        </header>
+
+        <!-- بخش دریافت اطلاعات دانش‌آموز -->
+        <div id="studentInfoSection" class="student-info-panel">
+            <h2>📋 اطلاعات دانش‌آموز</h2>
+            <form id="studentInfoForm" autocomplete="off">
+                <div class="input-group">
+                    <label for="studentName">نام و نام خانوادگی:</label>
+                    <input type="text" id="studentName" required placeholder="نام خود را وارد کنید">
+                </div>
+                <div class="input-group">
+                    <label for="studentClass">کلاس:</label>
+                    <input type="text" id="studentClass" required placeholder="مثلاً ۱۰ تجربی ۱">
+                </div>
+                <div class="input-group">
+                    <label for="studentID">شماره دانش‌آموزی (یا کد ملی):</label>
+                    <input type="text" id="studentID" required placeholder="شناسه یکتا">
+                </div>
+                <button type="submit" class="btn btn-submit" style="width:100%;">🚀 شروع آزمون</button>
+            </form>
+        </div>
+
+        <!-- بسته‌بندی آزمون (در ابتدا مخفی) -->
+        <div id="quizWrapper" style="display:none;">
+            <!-- نوار ابزار آزمون -->
+            <div class="quiz-toolbar" id="quizToolbar">
+                <div class="timer-box" id="timerBox">
+                    <span class="timer-icon">⏱️</span>
+                    <span id="timerDisplay">۱۵:۰۰</span>
+                </div>
+                <div class="progress-wrapper">
+                    <div class="progress-label">
+                        <span>پیشرفت آزمون</span>
+                        <span id="progressPercent">۰٪</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فرم سوالات -->
+            <form id="quizForm" autocomplete="off">
+                <div class="questions-grid" id="questionsGrid">
+                    <!-- سوال ۱ -->
+                    <div class="question-card" data-question="1" id="qCard1">
+                        <div class="q-header">
+                            <span class="q-number easy">۱</span>
+                            <div>
+                                <div class="q-text">دامنه تابع <span dir="ltr">f(x) = √(x − ۳)</span> کدام است؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📘 فصل ۵ - تابع</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#d1fae5;color:#065f46;">آسان</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q1" value="A"><span class="option-label">الف) <span dir="ltr">x ≥ ۳</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q1" value="B"><span class="option-label">ب) <span dir="ltr">x > ۳</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q1" value="C"><span class="option-label">ج) <span dir="ltr">x ≤ ۳</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q1" value="D"><span class="option-label">د) <span dir="ltr">x < ۳</span></span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp1">✅ پاسخ صحیح: الف) <span dir="ltr">x ≥ ۳</span><br>زیرا عبارت زیر رادیکال باید نامنفی باشد: <span dir="ltr">x − ۳ ≥ ۰ → x ≥ ۳</span></div>
+                    </div>
+                    <!-- سوال ۲ -->
+                    <div class="question-card" data-question="2" id="qCard2">
+                        <div class="q-header">
+                            <span class="q-number medium">۲</span>
+                            <div>
+                                <div class="q-text">اگر <span dir="ltr">f(x) = ۲x + ۱</span> و <span dir="ltr">g(x) = x²</span>، حاصل <span dir="ltr">f(g(۲))</span> کدام است؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📘 فصل ۵ - تابع</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#fef3c7;color:#8b6914;">متوسط</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q2" value="A"><span class="option-label">الف) ۵</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q2" value="B"><span class="option-label">ب) ۹</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q2" value="C"><span class="option-label">ج) ۷</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q2" value="D"><span class="option-label">د) ۱۱</span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp2">✅ پاسخ صحیح: ب) ۹<br><span dir="ltr">g(۲) = ۲² = ۴</span> و سپس <span dir="ltr">f(۴) = ۲(۴) + ۱ = ۹</span></div>
+                    </div>
+                    <!-- سوال ۳ -->
+                    <div class="question-card" data-question="3" id="qCard3">
+                        <div class="q-header">
+                            <span class="q-number easy">۳</span>
+                            <div>
+                                <div class="q-text">هر رابطه‌ای یک تابع است. (صحت یا نادرستی؟)</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📘 فصل ۵ - تابع</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">صحیح و غلط</span>
+                                    <span class="tag" style="background:#d1fae5;color:#065f46;">آسان</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tf-options">
+                            <label class="tf-btn" id="tf3true"><input type="radio" name="q3" value="true">✅ صحیح</label>
+                            <label class="tf-btn" id="tf3false"><input type="radio" name="q3" value="false">❌ نادرست</label>
+                        </div>
+                        <div class="explanation" id="exp3">✅ پاسخ صحیح: نادرست ❌<br>در تابع، هر عضو دامنه باید دقیقاً به یک عضو در برد متناظر شود. همه رابطه‌ها این شرط را ندارند.</div>
+                    </div>
+                    <!-- سوال ۴ -->
+                    <div class="question-card" data-question="4" id="qCard4">
+                        <div class="q-header">
+                            <span class="q-number medium">۴</span>
+                            <div>
+                                <div class="q-text">برد تابع <span dir="ltr">f(x) = x² + ۱</span> کدام است؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📘 فصل ۵ - تابع</span>
+                                    <span class="tag points">۲ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#fef3c7;color:#8b6914;">متوسط</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q4" value="A"><span class="option-label">الف) <span dir="ltr">[۱, ∞)</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q4" value="B"><span class="option-label">ب) <span dir="ltr">(۱, ∞)</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q4" value="C"><span class="option-label">ج) <span dir="ltr">[۰, ∞)</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q4" value="D"><span class="option-label">د) <span dir="ltr">(−∞, ۱]</span></span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp4">✅ پاسخ صحیح: الف) <span dir="ltr">[۱, ∞)</span><br>حداقل مقدار <span dir="ltr">x²</span> صفر است (در <span dir="ltr">x=۰</span>)، بنابراین <span dir="ltr">f(x) ≥ ۱</span> و برد از ۱ شروع می‌شود.</div>
+                    </div>
+                    <!-- سوال ۵ -->
+                    <div class="question-card" data-question="5" id="qCard5">
+                        <div class="q-header">
+                            <span class="q-number easy">۵</span>
+                            <div>
+                                <div class="q-text">ریشه‌های معادله <span dir="ltr">x² − ۵x + ۶ = ۰</span> کدامند؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📗 فصل ۶ - معادلات درجه دوم</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#d1fae5;color:#065f46;">آسان</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q5" value="A"><span class="option-label">الف) ۲ و ۳</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q5" value="B"><span class="option-label">ب) ۲- و ۳-</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q5" value="C"><span class="option-label">ج) ۱ و ۶</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q5" value="D"><span class="option-label">د) ۱- و ۶-</span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp5">✅ پاسخ صحیح: الف) ۲ و ۳<br>با تجزیه: <span dir="ltr">(x − ۲)(x − ۳) = ۰ → x = ۲, x = ۳</span></div>
+                    </div>
+                    <!-- سوال ۶ -->
+                    <div class="question-card" data-question="6" id="qCard6">
+                        <div class="q-header">
+                            <span class="q-number medium">۶</span>
+                            <div>
+                                <div class="q-text">اگر دلتای (Δ) یک معادله درجه دوم منفی باشد، معادله دو ریشه حقیقی دارد. (صحت یا نادرستی؟)</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📗 فصل ۶ - معادلات درجه دوم</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">صحیح و غلط</span>
+                                    <span class="tag" style="background:#fef3c7;color:#8b6914;">متوسط</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tf-options">
+                            <label class="tf-btn" id="tf6true"><input type="radio" name="q6" value="true">✅ صحیح</label>
+                            <label class="tf-btn" id="tf6false"><input type="radio" name="q6" value="false">❌ نادرست</label>
+                        </div>
+                        <div class="explanation" id="exp6">✅ پاسخ صحیح: نادرست ❌<br>وقتی دلتا منفی باشد، معادله هیچ ریشه حقیقی ندارد (فقط ریشه‌های مختلط دارد).</div>
+                    </div>
+                    <!-- سوال ۷ -->
+                    <div class="question-card" data-question="7" id="qCard7">
+                        <div class="q-header">
+                            <span class="q-number medium">۷</span>
+                            <div>
+                                <div class="q-text">مجموع ریشه‌های معادله <span dir="ltr">۲x² − ۸x + ۶ = ۰</span> کدام است؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📗 فصل ۶ - معادلات درجه دوم</span>
+                                    <span class="tag points">۲ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#fef3c7;color:#8b6914;">متوسط</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q7" value="A"><span class="option-label">الف) ۴</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q7" value="B"><span class="option-label">ب) ۴-</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q7" value="C"><span class="option-label">ج) ۳</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q7" value="D"><span class="option-label">د) ۸</span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp7">✅ پاسخ صحیح: الف) ۴<br>مجموع ریشه‌ها = <span dir="ltr">−b/a = −(−۸)/۲ = ۸/۲ = ۴</span></div>
+                    </div>
+                    <!-- سوال ۸ -->
+                    <div class="question-card" data-question="8" id="qCard8">
+                        <div class="q-header">
+                            <span class="q-number easy">۸</span>
+                            <div>
+                                <div class="q-text">میانگین اعداد ۲، ۴، ۶، ۸، ۱۰ کدام است؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📙 فصل ۷ - آمار و احتمال</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#d1fae5;color:#065f46;">آسان</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q8" value="A"><span class="option-label">الف) ۵</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q8" value="B"><span class="option-label">ب) ۶</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q8" value="C"><span class="option-label">ج) ۷</span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q8" value="D"><span class="option-label">د) ۸</span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp8">✅ پاسخ صحیح: ب) ۶<br>میانگین = <span dir="ltr">(۲+۴+۶+۸+۱۰) ÷ ۵ = ۳۰ ÷ ۵ = ۶</span></div>
+                    </div>
+                    <!-- سوال ۹ -->
+                    <div class="question-card" data-question="9" id="qCard9">
+                        <div class="q-header">
+                            <span class="q-number easy">۹</span>
+                            <div>
+                                <div class="q-text">احتمال هر پیشامد عددی بین ۰ و ۱ (شامل ۰ و ۱) است. (صحت یا نادرستی؟)</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📙 فصل ۷ - آمار و احتمال</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">صحیح و غلط</span>
+                                    <span class="tag" style="background:#d1fae5;color:#065f46;">آسان</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tf-options">
+                            <label class="tf-btn" id="tf9true"><input type="radio" name="q9" value="true">✅ صحیح</label>
+                            <label class="tf-btn" id="tf9false"><input type="radio" name="q9" value="false">❌ نادرست</label>
+                        </div>
+                        <div class="explanation" id="exp9">✅ پاسخ صحیح: صحیح ✅<br>احتمال هر پیشامد همواره عددی در بازه <span dir="ltr">[۰, ۱]</span> است. ۰ یعنی غیرممکن و ۱ یعنی قطعی.</div>
+                    </div>
+                    <!-- سوال ۱۰ -->
+                    <div class="question-card" data-question="10" id="qCard10">
+                        <div class="q-header">
+                            <span class="q-number medium">۱۰</span>
+                            <div>
+                                <div class="q-text">اگر یک تاس سالم را پرتاب کنیم، احتمال آمدن عدد زوج کدام است؟</div>
+                                <div class="q-meta">
+                                    <span class="tag chapter">📙 فصل ۷ - آمار و احتمال</span>
+                                    <span class="tag points">۱ نمره</span>
+                                    <span class="tag type">چهارگزینه‌ای</span>
+                                    <span class="tag" style="background:#fef3c7;color:#8b6914;">متوسط</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="options-list">
+                            <li><label class="option-item"><input type="radio" name="q10" value="A"><span class="option-label">الف) <span dir="ltr">۱/۶</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q10" value="B"><span class="option-label">ب) <span dir="ltr">۱/۳</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q10" value="C"><span class="option-label">ج) <span dir="ltr">۱/۲</span></span></label></li>
+                            <li><label class="option-item"><input type="radio" name="q10" value="D"><span class="option-label">د) <span dir="ltr">۲/۳</span></span></label></li>
+                        </ul>
+                        <div class="explanation" id="exp10">✅ پاسخ صحیح: ج) <span dir="ltr">۱/۲</span><br>اعداد زوج تاس: {۲, ۴, ۶} (سه حالت) از ۶ حالت ممکن → احتمال = <span dir="ltr">۳/۶ = ۱/۲</span></div>
+                    </div>
+                </div><!-- /questions-grid -->
+
+                <div class="submit-section" id="submitSection">
+                    <button type="button" class="btn btn-submit" id="btnSubmit">📝 ثبت پاسخ‌ها و مشاهده نتیجه</button>
+                    <button type="button" class="btn btn-reset" id="btnReset">🔄 شروع دوباره</button>
+                </div>
+            </form>
+        </div><!-- /quizWrapper -->
+
+        <!-- پنل نتیجه (بعد از ثبت) -->
+        <div class="results-panel" id="resultsPanel">
+            <h2 style="font-size:1.3rem;margin-bottom:4px;">📊 گزارش عملکرد</h2>
+            <div class="score-circle" id="scoreCircle">--</div>
+            <div class="results-summary" id="resultsSummary"></div>
+            <button type="button" class="btn btn-outline" id="btnReview" style="margin-top:8px;">🔍 مرور مجدد سؤال‌ها و پاسخ‌ها</button>
+        </div>
+
+        <!-- پنل «قبلاً آزمون داده‌اید» -->
+        <div class="already-completed-panel" id="alreadyCompletedPanel">
+            <h2 style="font-size:1.3rem;margin-bottom:4px;">⛔ آزمون قبلاً ثبت شده است</h2>
+            <div class="score-circle" id="prevScoreCircle">--</div>
+            <div class="results-summary" id="prevResultsSummary"></div>
+            <p style="color:#888; margin-top:12px;">شما تنها یک بار مجاز به شرکت در این آزمون هستید.</p>
+        </div>
+
+        <div class="footer-note">
+            🎓 آزمون ریاضی دهم تجربی | فصل‌های ۵، ۶ و ۷ | مدرسه غدیر
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // DOM elements
+            const studentInfoSection = document.getElementById('studentInfoSection');
+            const studentInfoForm = document.getElementById('studentInfoForm');
+            const quizWrapper = document.getElementById('quizWrapper');
+            const quizForm = document.getElementById('quizForm');
+            const btnSubmit = document.getElementById('btnSubmit');
+            const btnReset = document.getElementById('btnReset');
+            const btnReview = document.getElementById('btnReview');
+            const resultsPanel = document.getElementById('resultsPanel');
+            const alreadyCompletedPanel = document.getElementById('alreadyCompletedPanel');
+            const scoreCircle = document.getElementById('scoreCircle');
+            const resultsSummary = document.getElementById('resultsSummary');
+            const prevScoreCircle = document.getElementById('prevScoreCircle');
+            const prevResultsSummary = document.getElementById('prevResultsSummary');
+            const timerDisplay = document.getElementById('timerDisplay');
+            const timerBox = document.getElementById('timerBox');
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            const submitSection = document.getElementById('submitSection');
+
+            const TOTAL_TIME = 15 * 60;
+            const TOTAL_SCORE = 12;
+            const QUESTION_POINTS = { 1:1, 2:1, 3:1, 4:2, 5:1, 6:1, 7:2, 8:1, 9:1, 10:1 };
+            const CORRECT_ANSWERS = { 1:'A', 2:'B', 3:'false', 4:'A', 5:'A', 6:'false', 7:'A', 8:'B', 9:'true', 10:'C' };
+            const TOTAL_QUESTIONS = 10;
+
+            let timeRemaining = TOTAL_TIME;
+            let timerInterval = null;
+            let quizSubmitted = false;
+            let userAnswers = {};
+            let scoreBreakdown = {};
+            let currentStudent = null; // { name, class, id }
+
+            // ----- مدیریت ذخیره‌سازی با localStorage -----
+            function getStorageKey(studentID) {
+                return 'quizRecord_' + studentID.trim();
+            }
+
+            function saveStudentRecord(student, resultObj) {
+                const key = getStorageKey(student.id);
+                const record = {
+                    student: student,
+                    score: resultObj.totalEarned,
+                    maxScore: TOTAL_SCORE,
+                    percentage: resultObj.percentage,
+                    date: new Date().toLocaleDateString('fa-IR'),
+                    answers: resultObj.answers, // { qNum: userAnswer }
+                    scoreBreakdown: resultObj.scoreBreakdown // include details
+                };
+                localStorage.setItem(key, JSON.stringify(record));
+            }
+
+            function getStudentRecord(studentID) {
+                const key = getStorageKey(studentID);
+                const raw = localStorage.getItem(key);
+                return raw ? JSON.parse(raw) : null;
+            }
+
+            // ----- شروع آزمون (بعد از دریافت اطلاعات) -----
+            function startQuiz(student) {
+                currentStudent = student;
+                studentInfoSection.style.display = 'none';
+                quizWrapper.style.display = 'block';
+                resultsPanel.classList.remove('show');
+                alreadyCompletedPanel.classList.remove('show');
+                initQuizState();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // ----- نمایش خطای «قبلاً آزمون داده‌اید» -----
+            function showAlreadyCompleted(record) {
+                studentInfoSection.style.display = 'none';
+                quizWrapper.style.display = 'none';
+                resultsPanel.classList.remove('show');
+                alreadyCompletedPanel.classList.add('show');
+
+                const { student, score, maxScore, percentage, date } = record;
+                prevScoreCircle.textContent = score + '⁄' + maxScore;
+                prevScoreCircle.className = 'score-circle';
+                if (percentage >= 80) prevScoreCircle.classList.add('great');
+                else if (percentage >= 50) prevScoreCircle.classList.add('good');
+                else prevScoreCircle.classList.add('needs-work');
+
+                prevResultsSummary.innerHTML = `
+                    <strong>نام:</strong> ${student.name}<br>
+                    <strong>کلاس:</strong> ${student.class}<br>
+                    <strong>شماره دانش‌آموزی:</strong> ${student.id}<br>
+                    <strong>نمره نهایی:</strong> ${score} از ${maxScore} (${percentage}٪)<br>
+                    <span style="font-size:0.85rem;color:#888;">تاریخ ثبت: ${date}</span>
+                `;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // ----- مدیریت ارسال فرم اطلاعات دانش‌آموز -----
+            studentInfoForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nameInput = document.getElementById('studentName');
+                const classInput = document.getElementById('studentClass');
+                const idInput = document.getElementById('studentID');
+
+                const name = nameInput.value.trim();
+                const className = classInput.value.trim();
+                const studentID = idInput.value.trim();
+
+                if (!name || !className || !studentID) {
+                    alert('لطفاً تمام فیلدها را پر کنید.');
+                    return;
+                }
+
+                const student = { name, class: className, id: studentID };
+
+                // بررسی سابقه شرکت
+                const existingRecord = getStudentRecord(studentID);
+                if (existingRecord) {
+                    showAlreadyCompleted(existingRecord);
+                } else {
+                    startQuiz(student);
+                }
+            });
+
+            // ----- ریست وضعیت آزمون (بدون تأثیر بر اطلاعات دانش‌آموز) -----
+            function initQuizState() {
+                timeRemaining = TOTAL_TIME;
+                quizSubmitted = false;
+                userAnswers = {};
+                scoreBreakdown = {};
+                updateTimerDisplay();
+                timerBox.classList.remove('warning', 'danger');
+                updateProgress();
+
+                // پاک کردن انتخاب‌ها
+                quizForm.querySelectorAll('input[type="radio"]').forEach(inp => { inp.checked = false; inp.disabled = false; });
+                document.querySelectorAll('.question-card').forEach(card => card.classList.remove('answered', 'correct-flash', 'incorrect-flash'));
+                document.querySelectorAll('.tf-btn').forEach(btn => btn.classList.remove('selected-true', 'selected-false'));
+                document.querySelectorAll('.explanation').forEach(exp => exp.classList.remove('show', 'correct-exp', 'incorrect-exp'));
+                document.querySelectorAll('.tf-btn').forEach(btn => { btn.style.pointerEvents = 'auto'; btn.style.opacity = '1'; });
+                document.querySelectorAll('.option-item').forEach(item => { item.style.pointerEvents = 'auto'; item.style.opacity = '1'; });
+
+                scoreCircle.textContent = '--';
+                scoreCircle.className = 'score-circle';
+                resultsSummary.innerHTML = '';
+                resultsPanel.classList.remove('show');
+                submitSection.style.display = 'flex';
+
+                if (timerInterval) clearInterval(timerInterval);
+                startTimer();
+                document.getElementById('qCard1')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // ----- تایمر -----
+            function startTimer() {
+                if (timerInterval) clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    timeRemaining--;
+                    updateTimerDisplay();
+                    if (timeRemaining <= 120 && timeRemaining > 30) {
+                        timerBox.classList.add('warning');
+                        timerBox.classList.remove('danger');
+                    } else if (timeRemaining <= 30) {
+                        timerBox.classList.remove('warning');
+                        timerBox.classList.add('danger');
+                    } else {
+                        timerBox.classList.remove('warning', 'danger');
+                    }
+                    if (timeRemaining <= 0) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        autoSubmit();
+                    }
+                }, 1000);
+            }
+
+            function updateTimerDisplay() {
+                const mins = Math.floor(Math.max(0, timeRemaining) / 60);
+                const secs = Math.max(0, timeRemaining) % 60;
+                timerDisplay.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+            }
+
+            function stopTimer() {
+                if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+                timerBox.classList.remove('warning', 'danger');
+            }
+
+            // ----- نوار پیشرفت -----
+            function updateProgress() {
+                let answeredCount = 0;
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (selected) answeredCount++;
+                    const card = document.getElementById('qCard' + i);
+                    if (card && !quizSubmitted) {
+                        card.classList.toggle('answered', !!selected);
+                    }
+                }
+                const pct = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+                progressBar.style.width = pct + '%';
+                progressPercent.textContent = pct + '٪';
+                updateTFButtonStyles();
+            }
+
+            function updateTFButtonStyles() {
+                function setTF(qNum, trueId, falseId) {
+                    const trueBtn = document.getElementById(trueId);
+                    const falseBtn = document.getElementById(falseId);
+                    const val = document.querySelector(`input[name="q${qNum}"]:checked`);
+                    trueBtn?.classList.remove('selected-true');
+                    falseBtn?.classList.remove('selected-false');
+                    if (val?.value === 'true') trueBtn?.classList.add('selected-true');
+                    if (val?.value === 'false') falseBtn?.classList.add('selected-false');
+                }
+                setTF(3, 'tf3true', 'tf3false');
+                setTF(6, 'tf6true', 'tf6false');
+                setTF(9, 'tf9true', 'tf9false');
+            }
+
+            quizForm.addEventListener('change', function(e) {
+                if (quizSubmitted) return;
+                if (e.target.type === 'radio') {
+                    updateProgress();
+                    updateTFButtonStyles();
+                }
+            });
+
+            // ----- ارسال خودکار -----
+            function autoSubmit() {
+                if (quizSubmitted) return;
+                alert('⏰ زمان آزمون به پایان رسید! پاسخ‌های شما به‌صورت خودکار ثبت می‌شود.');
+                submitQuiz();
+            }
+
+            // ----- دکمه ثبت -----
+            btnSubmit.addEventListener('click', function() {
+                if (quizSubmitted) return;
+                const answeredCount = countAnswered();
+                if (answeredCount < TOTAL_QUESTIONS) {
+                    if (!confirm(`⚠️ شما به ${TOTAL_QUESTIONS - answeredCount} سؤال پاسخ نداده‌اید. ادامه می‌دهید؟`)) return;
+                } else {
+                    if (!confirm('✅ برای ثبت نهایی آماده‌اید؟')) return;
+                }
+                submitQuiz();
+            });
+
+            function countAnswered() {
+                let c = 0;
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    if (document.querySelector(`input[name="q${i}"]:checked`)) c++;
+                }
+                return c;
+            }
+
+            // ----- محاسبه و ثبت نتیجه -----
+            function submitQuiz() {
+                quizSubmitted = true;
+                stopTimer();
+                // جمع‌آوری پاسخ‌ها
+                userAnswers = {};
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+                    userAnswers[i] = sel ? sel.value : null;
+                }
+                // محاسبه نمره
+                let totalEarned = 0;
+                scoreBreakdown = {};
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    const pts = QUESTION_POINTS[i] || 1;
+                    const correct = CORRECT_ANSWERS[i];
+                    const userAns = userAnswers[i];
+                    const isCorrect = (userAns !== null && userAns === correct);
+                    const earned = isCorrect ? pts : 0;
+                    totalEarned += earned;
+                    scoreBreakdown[i] = { earned, max: pts, correct: isCorrect, userAnswer: userAns, correctAnswer: correct };
+                }
+                const percentage = Math.round((totalEarned / TOTAL_SCORE) * 100);
+
+                // ذخیره در localStorage تحت شماره دانش‌آموزی
+                if (currentStudent) {
+                    saveStudentRecord(currentStudent, {
+                        totalEarned,
+                        percentage,
+                        answers: userAnswers,
+                        scoreBreakdown
+                    });
+                }
+
+                // نمایش نتایج
+                displayResults(totalEarned, percentage);
+                highlightCards();
+                showExplanations();
+                submitSection.style.display = 'none';
+                disableAllInputs();
+                alreadyCompletedPanel.classList.remove('show');
+                resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            function disableAllInputs() {
+                quizForm.querySelectorAll('input[type="radio"]').forEach(inp => inp.disabled = true);
+                document.querySelectorAll('.tf-btn').forEach(b => { b.style.pointerEvents = 'none'; b.style.opacity = '0.85'; });
+                document.querySelectorAll('.option-item').forEach(item => { item.style.pointerEvents = 'none'; item.style.opacity = '0.85'; });
+            }
+
+            function displayResults(totalEarned, percentage) {
+                resultsPanel.classList.add('show');
+                scoreCircle.textContent = totalEarned + '⁄' + TOTAL_SCORE;
+                scoreCircle.className = 'score-circle';
+                if (percentage >= 80) scoreCircle.classList.add('great');
+                else if (percentage >= 50) scoreCircle.classList.add('good');
+                else scoreCircle.classList.add('needs-work');
+
+                let emoji = '😊', comment = '';
+                if (percentage >= 90) { emoji = '🌟'; comment = 'عالی!'; }
+                else if (percentage >= 75) { emoji = '👏'; comment = 'خیلی خوب.'; }
+                else if (percentage >= 50) { emoji = '💪'; comment = 'متوسط.'; }
+                else { emoji = '📚'; comment = 'نیاز به تمرین.'; }
+
+                resultsSummary.innerHTML = `
+                    <strong>نام:</strong> ${currentStudent?.name ?? ''}<br>
+                    <strong>کلاس:</strong> ${currentStudent?.class ?? ''}<br>
+                    <strong>شماره:</strong> ${currentStudent?.id ?? ''}<br>
+                    <strong>نمره:</strong> ${totalEarned} از ${TOTAL_SCORE} (${percentage}٪) ${emoji}<br>
+                    <span>${comment}</span><br>
+                    <span style="font-size:0.8rem;color:#888;">تعداد پاسخ‌ها: ${countAnswered()}/${TOTAL_QUESTIONS}</span><br>
+                    <span style="color:var(--error);">🚫 این آزمون تنها یک بار قابل انجام است.</span>
+                `;
+            }
+
+            function highlightCards() {
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    const card = document.getElementById('qCard' + i);
+                    if (!card) continue;
+                    card.classList.remove('correct-flash', 'incorrect-flash', 'answered');
+                    card.classList.add(scoreBreakdown[i]?.correct ? 'correct-flash' : 'incorrect-flash');
+                }
+            }
+
+            function showExplanations() {
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    const exp = document.getElementById('exp' + i);
+                    if (!exp) continue;
+                    exp.classList.add('show');
+                    const info = scoreBreakdown[i];
+                    if (info?.correct) {
+                        exp.classList.add('correct-exp');
+                        exp.classList.remove('incorrect-exp');
+                        exp.textContent = '🎉 ' + (exp.textContent.replace('✅ پاسخ صحیح:', 'پاسخ شما درست است!'));
+                    } else {
+                        exp.classList.add('incorrect-exp');
+                        exp.classList.remove('correct-exp');
+                        const userAnsText = info?.userAnswer ? ` (پاسخ شما: ${info.userAnswer})` : ' (بدون پاسخ)';
+                        exp.textContent = '❌ ' + exp.textContent.replace('✅ پاسخ صحیح:', 'نادرست! پاسخ صحیح:') + userAnsText;
+                    }
+                }
+            }
+
+            // ----- دکمه بازبینی (فقط اسکرول) -----
+            btnReview.addEventListener('click', function() {
+                document.getElementById('qCard1')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelectorAll('.question-card').forEach((card, idx) => {
+                    setTimeout(() => {
+                        card.style.boxShadow = '0 0 0 3px var(--accent)';
+                        setTimeout(() => { card.style.boxShadow = ''; }, 500);
+                    }, idx * 60);
+                });
+            });
+
+            // ----- دکمه شروع دوباره (محدود به قبل از ثبت) -----
+            btnReset.addEventListener('click', function() {
+                if (quizSubmitted) {
+                    alert('شما قبلاً آزمون را ثبت کرده‌اید و امکان شروع دوباره وجود ندارد.');
+                    return;
+                }
+                if (countAnswered() > 0 && !confirm('پاسخ‌های شما پاک می‌شود. ادامه؟')) return;
+                initQuizState();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ----- پشتیبانی از صفحه‌کلید -----
+            document.addEventListener('keydown', function(e) {
+                if (quizSubmitted) return;
+                if (e.key >= '1' && e.key <= '4') {
+                    const focused = document.activeElement;
+                    if (focused && focused.closest('.question-card')) {
+                        const card = focused.closest('.question-card');
+                        const options = card.querySelectorAll('input[type="radio"]');
+                        const idx = parseInt(e.key) - 1;
+                        if (options[idx]) {
+                            options[idx].checked = true;
+                            options[idx].dispatchEvent(new Event('change', { bubbles: true }));
+                            updateProgress();
+                            updateTFButtonStyles();
+                        }
+                    }
+                }
+            });
+
+            // ----- مقداردهی اولیه صفحه -----
+            studentInfoSection.style.display = 'block';
+            quizWrapper.style.display = 'none';
+            resultsPanel.classList.remove('show');
+            alreadyCompletedPanel.classList.remove('show');
+            // (اگر کاربر مستقیماً صفحه را رفرش کند، باید دوباره اطلاعات وارد کند)
+
+            console.log('📘 آزمون ریاضی دهم تجربی | نسخه ۲.۰ با احراز هویت');
+        })();
+    </script>
+</body>
+</html>
